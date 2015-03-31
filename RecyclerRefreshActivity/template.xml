@@ -48,12 +48,12 @@
 
     <parameter
         id="includeCustom"
-        name="Tambahkan custom class"
+        name="Add custom class"
         type="enum"
         default="ya"
-        help="jika blm punya EmptyRecyclerView.java dan MultiSwipeRefreshLayout.java di projectmu, pilih include aja">
-        <option id="ya">include EmptyRecyclerView.java dan MultiSwipeRefreshLayout.java in custom dir</option>
-        <option id="tidak">Uda punya class itu, gag sombong ya..</option>
+        help="If you don't have EmptyRecyclerView.java and MultiSwipeRefreshLayout.java in your project, please include both of them">
+        <option id="ya">include EmptyRecyclerView.java and MultiSwipeRefreshLayout.java</option>
+        <option id="tidak">No, Thanks</option>
     </parameter>
 
     <parameter
