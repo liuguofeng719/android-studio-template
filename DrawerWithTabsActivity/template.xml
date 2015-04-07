@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<template
+    format="3"
+    revision="1"
+    name="Activity Drawer With Tabs"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new Drawer activity with Tabs.">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="Act_Drawer"
+        default="Act_Drawer"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="fragLayoutName"
+        name="Fragemnt Tabs Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_tab"
+        default="fragment_tab"
+        help="The name of the layout to create for the Fragment Tabs" />
+
+    <parameter
+        id="activityTitle"
+        name="Title"
+        type="string"
+        constraints="nonempty"
+        default="Act_Drawer"
+        suggest="${activityClass}"
+        help="The name of the activity. For launcher activities, the application title." />
+
+    <parameter
+        id="menuName"
+        name="Menu Resource Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="menu_${classToResource(activityClass)}"
+        default="menu_main"
+        help="The name of the resource file to create for the menu items" />
+
+    <parameter
+        id="tabsMode"
+        name="Tabs Mode"
+        type="enum"
+        default="fixed"
+        help="Fixed tab usually used if your tab is 3 or less, and Strip tab is for more">
+        <option id="fixed">Fixed Tabs</option>
+        <option id="strip">Strip Tabs</option>
+    </parameter>
+
+    <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />
+
+    <parameter
+        id="parentActivityClass"
+        name="Hierarchical Parent"
+        type="string"
+        constraints="activity|exists|empty"
+        default=""
+        help="The hierarchical parent activity, used to provide a default implementation for the 'Up' button" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.montazze.myapp" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_tab_fixed.png</thumb>
+        <!-- attributes act as selectors based on chosen parameters -->
+        <thumb tabsMode="fixed">template_tab_fixed.png</thumb>
+        <thumb tabsMode="strip">template_tab_strip.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
