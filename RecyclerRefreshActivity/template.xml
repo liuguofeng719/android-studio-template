@@ -47,13 +47,13 @@
         help="The name of the resource file to create for the menu items" />
 
     <parameter
-        id="includeCustom"
-        name="Add custom class"
+        id="loadmore"
+        name="Add Load More Ability"
         type="enum"
-        default="ya"
-        help="If you don't have EmptyRecyclerView.java and MultiSwipeRefreshLayout.java in your project, please include both of them">
-        <option id="ya">include EmptyRecyclerView.java and MultiSwipeRefreshLayout.java</option>
-        <option id="tidak">No, Thanks</option>
+        default="yes"
+        help="Endless scroll">
+        <option id="yes">Yes</option>
+        <option id="no">No, Thanks</option>
     </parameter>
 
     <parameter
@@ -81,7 +81,10 @@
     <!-- 128x128 thumbnails relative to template.xml -->
     <thumbs>
         <!-- default thumbnail is required -->
-        <thumb>template_blank_activity.png</thumb>
+        <thumb>template_loadmore.png</thumb>
+        <!-- attributes act as selectors based on chosen parameters -->
+        <thumb loadmore="yes">template_loadmore.png</thumb>
+        <thumb loadmore="no">template_no_loadmore.png</thumb>
     </thumbs>
 
     <globals file="globals.xml.ftl" />

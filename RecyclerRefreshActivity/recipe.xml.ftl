@@ -3,7 +3,7 @@
 
 	<dependency mavenUrl="com.jakewharton:butterknife:5.1.1"/>
     <dependency mavenUrl="com.android.support:appcompat-v7:${targetApi}.+"/>
-    <dependency mavenUrl="com.android.support:recyclerview-v7:${targetApi}.+"/>
+    <dependency mavenUrl="com.marshalchen.ultimaterecyclerview:library:0.3.0"/>
 
     <merge from="AndroidManifest.xml.ftl"
              to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
@@ -17,14 +17,10 @@
     <copy from="res/mipmap-xxhdpi"
             to="${escapeXmlAttribute(resOut)}/mipmap-xxhdpi" />
     <copy from="res/mipmap-xxxhdpi"
-            to="${escapeXmlAttribute(resOut)}/mipmap-xxxhdpi" />  
+            to="${escapeXmlAttribute(resOut)}/mipmap-xxxhdpi" /> 
 
-    <#if includeCustom == "ya">
-        <instantiate from="src/app_package/views/custom/EmptyRecyclerView.java.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/views/custom/EmptyRecyclerView.java" />
-        <instantiate from="src/app_package/views/custom/MultiSwipeRefreshLayout.java.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/views/custom/MultiSwipeRefreshLayout.java" />
-    </#if>      
+    <copy from="res/drawable"
+            to="${escapeXmlAttribute(resOut)}/drawable" />
 
     <instantiate from="res/menu/main.xml.ftl"
             to="${escapeXmlAttribute(resOut)}/menu/${menuName}.xml" />
@@ -43,11 +39,19 @@
     <instantiate from="src/app_package/views/activity/Act_RecyclerRefresh.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/views/activity/${activityClass}.java" />
 				   
-	<instantiate from="res/layout/item_recycler.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/layout/item_recycler.xml" />      
+	<instantiate from="res/layout/item_recycler_list.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/layout/item_recycler_list.xml" />      
+                   
+    <instantiate from="res/layout/item_recycler_grid.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/layout/item_recycler_grid.xml" />      
 
     <instantiate from="res/layout/item_recycler_empty.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/layout/item_recycler_empty.xml" />     
+                   to="${escapeXmlAttribute(resOut)}/layout/item_recycler_empty.xml" />  
+
+    <#if loadmore=="yes">
+    <instantiate from="res/layout/recycler_loadmore_view.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/layout/recycler_loadmore_view.xml" /> 
+    </#if>   
 
     <instantiate from="src/app_package/adapter/RecyclerAdapter.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/adapter/RecyclerAdapter.java" />

@@ -1,38 +1,25 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
-	
-	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <LinearLayout android:layout_width="match_parent" 
+    	android:layout_height="match_parent"
         android:orientation="vertical">
-		
-		<com.example.choirul.myapplication.views.custom.MultiSwipeRefreshLayout
-			android:id="@+id/swipe_refresh_layout"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
 
-			<FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/ultimate_recycler_view"
+            app:recyclerviewClipToPadding="true"
+            app:recyclerviewEmptyView="@layout/item_recycler_empty"
+            app:recyclerviewScrollbars="vertical"
+            android:scrollbars="none">
+        </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
 
-				<com.example.choirul.myapplication.views.custom.EmptyRecyclerView
-					android:id="@+id/recyclerview"
-					android:layout_width="match_parent"
-					android:clipToPadding="false"
-					android:layout_height="match_parent"/>
-
-				<include layout="@layout/item_recycler_empty"/>
-			
-            </FrameLayout>
-
-		</com.example.choirul.myapplication.views.custom.MultiSwipeRefreshLayout>
-		
     </LinearLayout>
 
 </FrameLayout>

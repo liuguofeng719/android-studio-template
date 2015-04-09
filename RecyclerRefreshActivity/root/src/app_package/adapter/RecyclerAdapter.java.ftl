@@ -5,41 +5,66 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.List;
+
 import ${packageName}.R;
+import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
+
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends UltimateViewAdapter {
 
     private List<String> data;
+    private int view = R.layout.item_recycler_list;
 
     public RecyclerAdapter(List<String> data) {
         this.data = data;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.item_recycler, viewGroup, false);
+                inflate(view, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.txt.setText(data.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getAdapterItemCount() {
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (position < getItemCount() && (customHeaderView != null ? position <= data.size() : position < data.size()) && (customHeaderView != null ? position > 0 : true)) {
+
+            ((ViewHolder) holder).recTxt.setText(data.get(customHeaderView != null ? position - 1 : position));
+            // ((ViewHolder) holder).itemView.setActivated(selectedItems.get(position, false));
+        }
+    }
+
+    public void insert(String string, int position) {
+        insert(data, string, position);
+    }
+
+    public void remove(int position) {
+        remove(data, position);
+    }
+
+    public void clear() {
+        clear(data);
+    }
+
+    public void setItemView(int view) {
+        this.view = view;
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.rec_txt)
-        public TextView txt;
+        TextView recTxt;
 
         ViewHolder(View view) {
             super(view);
